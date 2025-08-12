@@ -121,19 +121,6 @@ function App() {
                 <SignatureForm data={data} onDataChange={handleDataChange} />
               </Card.Content>
             </Card>
-            <Card>
-              <Card.Header>
-                 <Card.Title>2. Votre Logo</Card.Title>
-                <Card.Description>Uploadez un fichier ou utilisez une URL pour votre logo.</Card.Description>
-              </Card.Header>
-              <Card.Content>
-                  <LogoUploader 
-                    logoType={data.logoType} 
-                    logoContent={data.logoContent} 
-                    onDataChange={handleDataChange} 
-                  />
-              </Card.Content>
-            </Card>
           </div>
 
           <div className="w-full lg:w-1/2 lg:sticky lg:top-8">
@@ -150,7 +137,7 @@ function App() {
         </div>
 
         <footer className="text-center mt-12 py-4 border-t border-gray-200">
-            <p className="text-gray-500">Créé avec React et Tailwind CSS.</p>
+            <p className="text-gray-500">copyright © LAPOSTE CI</p>
         </footer>
       </main>
     </div>
