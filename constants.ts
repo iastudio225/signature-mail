@@ -1,15 +1,15 @@
 import { SignatureData } from './types';
 
 export const INITIAL_SIGNATURE_DATA: SignatureData = {
-  name: "EYEMON POUPOUYA",
-  role: "Développeur Frontend",
-  email: "hello@reallygreatsite.com",
-  phoneFixe: "",
-  mobile: "123-456-7890",
-  website: "www.reallygreatsite.com",
-  address: "123 Anywhere St., Any City",
+  name: "TOTO TITI",
+  role: "Commercial",
+  email: "toto.titi@laposte.ci",
+  phoneFixe: "+225 27 01 23 45 67",
+  mobile: "+225 01 23 45 67 89",
+  website: "www.laposte.ci",
+  address: "Abidjan, Treichville, km4,",
   logoType: 'url',
-  logoContent: '/logo/default-logo.png',
+  logoContent: '/signature-mail/logo/default-logo.png',
   width: 150,
   nameFontSize: 18,
   roleFontSize: 14,
