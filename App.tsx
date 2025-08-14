@@ -4,7 +4,6 @@ import { SignatureData } from './types';
 import { INITIAL_SIGNATURE_DATA, SIGNATURE_ICONS } from './constants';
 import SignatureForm from './components/SignatureForm';
 import SignaturePreview from './components/SignaturePreview';
-import LogoUploader from './components/LogoUploader';
 import { Card } from './components/ui/Card';
 
 function App() {

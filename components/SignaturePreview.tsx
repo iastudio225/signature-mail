@@ -31,14 +31,15 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ data, generatedHtml
   };
 
   const copyHtmlToClipboard = async () => {
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+      alert("Impossible de copier automatiquement sur ce navigateur. Veuillez copier manuellement le contenu dans Code HTML généré.");
+      return;
+    }
     try {
       await navigator.clipboard.writeText(generatedHtml);
-      setCopyButtonText('Copié !');
-      setTimeout(() => setCopyButtonText('Copier le HTML'), 2000);
+      alert("Signature copiée !");
     } catch (err) {
-      console.error('Failed to copy: ', err);
-      setCopyButtonText('Erreur de copie');
-       setTimeout(() => setCopyButtonText('Copier le HTML'), 2000);
+      alert("Échec de la copie : " + err);
     }
   };
   
