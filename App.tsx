@@ -125,7 +125,7 @@ function App() {
           <div className="w-full lg:w-1/2 lg:sticky lg:top-8">
              <Card>
               <Card.Header>
-                 <Card.Title>3. Aperçu et Export</Card.Title>
+                 <Card.Title>2. Aperçu et Export</Card.Title>
                 <Card.Description>Visualisez votre signature et copiez ou téléchargez le code HTML.</Card.Description>
               </Card.Header>
               <Card.Content>
