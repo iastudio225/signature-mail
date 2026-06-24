@@ -3,6 +3,7 @@ import React from 'react';
 import { SignatureData } from '../types';
 import { Input } from './ui/Input';
 import { Label } from './ui/Label';
+import LogoUploader from './LogoUploader';
 
 interface SignatureFormProps {
   data: SignatureData;
@@ -48,6 +49,10 @@ const SignatureForm: React.FC<SignatureFormProps> = ({ data, onDataChange }) => 
        <div>
         <Label htmlFor="address">Adresse</Label>
         <Input type="text" id="address" name="address" value={data.address} onChange={handleChange} placeholder="123 Rue de Paris, 75001 Paris" />
+      </div>
+      <div>
+        <Label>Logo</Label>
+        <LogoUploader logoType={data.logoType} logoContent={data.logoContent} onDataChange={onDataChange} />
       </div>
       <div>
         <Label htmlFor="width">Largeur du logo (px)</Label>

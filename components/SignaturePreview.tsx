@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
 import { SignatureData } from '../types';
 import { Button } from './ui/Button';
 import { Textarea } from './ui/Textarea';
@@ -17,6 +18,7 @@ interface SignaturePreviewProps {
 
 const SignaturePreview: React.FC<SignaturePreviewProps> = ({ data, generatedHtml }) => {
   const [copyButtonText, setCopyButtonText] = useState('Copier le HTML');
+  const previewRef = useRef<HTMLDivElement>(null);
 
   const downloadHtmlFile = () => {
     const blob = new Blob([generatedHtml], { type: 'text/html;charset=utf-8' });
@@ -43,6 +45,17 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ data, generatedHtml
     }
   };
   
+  const downloadAsPng = async () => {
+    if (!previewRef.current) return;
+    const canvas = await html2canvas(previewRef.current);
+    const link = document.createElement('a');
+    link.download = `${data.name.replace(/\s+/g, '_').toLowerCase()}_signature.png`;
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const logoElement =
     data.logoType === 'svg' ? (
       <div
@@ -65,8 +78,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ data, generatedHtml
       <div>
         <h3 className="text-lg font-semibold mb-2 text-gray-700">Aperçu en direct</h3>
         <div className="p-4 border border-dashed border-gray-300 rounded-lg bg-white min-h-[120px] font-sans">
-            {/* Content */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '10px' }}>
+            <div ref={previewRef} style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '10px' }}>
                 {logoElement}
                 <div style={{ width: '1px', backgroundColor: '#005442', alignSelf: 'stretch' }} />
                 <div style={{ color: '#374151' }}>
@@ -101,13 +113,17 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ data, generatedHtml
       </div>
       
       <div className="flex flex-col sm:flex-row gap-3">
-        <Button onClick={copyHtmlToClipboard} variant="secondary" className="w-full">
+        <Button onClick={copyHtmlToClipboard} variant="secondary" className="w-full sm:w-auto">
             <ClipboardIcon className="w-5 h-5 mr-2"/>
             {copyButtonText}
         </Button>
-        <Button onClick={downloadHtmlFile} variant="primary" className="w-full">
+        <Button onClick={downloadHtmlFile} variant="primary" className="w-full sm:w-auto">
             <DownloadIcon className="w-5 h-5 mr-2"/>
-            Télécharger .html
+            .html
+        </Button>
+        <Button onClick={downloadAsPng} variant="primary" className="w-full sm:w-auto">
+            <DownloadIcon className="w-5 h-5 mr-2"/>
+            .png
         </Button>
       </div>
 
