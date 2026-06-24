@@ -47,7 +47,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ data, generatedHtml
   
   const downloadAsPng = async () => {
     if (!previewRef.current) return;
-    const canvas = await html2canvas(previewRef.current);
+    const canvas = await html2canvas(previewRef.current, { scale: 2 });
     const link = document.createElement('a');
     link.download = `${data.name.replace(/\s+/g, '_').toLowerCase()}_signature.png`;
     link.href = canvas.toDataURL('image/png');
