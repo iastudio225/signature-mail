@@ -3,5 +3,5 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig({
   plugins:[react()],
-  base: '/signature-mail',
+  base: '/',
 });
